@@ -23,11 +23,5 @@ class ApiController < ApplicationController
 
     render json: preview.matches_json
   end
-
-  def grok_to_regexp
-    grok = GrokConverter.new
-    grok.load_patterns
-    render text: grok.convert_to_regexp(params[:grok_str]).source
-  end
 end
 
