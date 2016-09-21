@@ -27,7 +27,7 @@ class Fluentd::AgentsController < ApplicationController
     @logs.each do |l|
       current_log = l[0]
       log_content = current_log.sub(/^[\-\d\s\:\+a-zA-Z\.]*/, '')
-      parsed_log = JSON.parse(log_content)["log"]
+      parsed_log = JSON.parse(log_content)["log"] rescue {}
       @logs_changed << parsed_log
     end
     render json: @logs_changed
