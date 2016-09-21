@@ -25,7 +25,7 @@ class Fluentd::AgentsController < ApplicationController
     @logs = @fluentd.agent.log.tail(params[:limit]).reverse if @fluentd
     @logs_changed = []
     @logs.each do |l|
-      current_log = @logs[0]
+      current_log = l[0]
       log_content = current_log.sub(/^[\-\d\s\:\+a-zA-Z\.]*/, '')
       parsed_log = JSON.parse(log_content)["log"]
       @logs_changed << parsed_log
