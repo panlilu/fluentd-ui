@@ -1,5 +1,5 @@
 class FluentdController < ApplicationController
-  before_action :find_fluentd, only: [:show, :edit, :update, :destroy, :log, :raw_log, :errors]
+  before_action :find_fluentd, only: [:show, :edit, :update, :destroy, :log, :raw_log, :errors, :advanced_log]
   before_action :check_fluentd_exists, only: [:edit, :log, :raw_log, :errors]
 
   def show
@@ -29,7 +29,7 @@ class FluentdController < ApplicationController
     end
     redirect_to daemon_path
   end
-  
+
   def destroy
     @fluentd.agent.stop if @fluentd.agent.running?
     @fluentd.destroy
@@ -37,6 +37,9 @@ class FluentdController < ApplicationController
   end
 
   def log
+  end
+
+  def advanced_log
   end
 
   def errors

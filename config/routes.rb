@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get "log"
     get "raw_log"
     get "errors"
+    get "advanced_log"
 
     scope module: :fluentd do
       resource :agent, only: [] do
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
         put "stop"
         put "restart"
         get "log_tail"
+        get "advanced_log_tail"
       end
 
       resource :setting, only: [:show, :edit, :update] do

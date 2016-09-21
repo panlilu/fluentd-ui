@@ -135,6 +135,8 @@ en:
       page_title: Edit
     log:
       page_title: log
+    advanced_log:
+      page_title: Advanced log
     errors:
       page_title: Error log
       error_is_empty: No errors

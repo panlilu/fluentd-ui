@@ -21,6 +21,18 @@ class Fluentd::AgentsController < ApplicationController
     render json: @logs
   end
 
+  def advanced_log_tail
+    @logs = @fluentd.agent.log.tail(params[:limit]).reverse if @fluentd
+    @logs_changed = []
+    @logs.each do |l|
+      current_log = @logs[0]
+      log_content = current_log.sub(/^[\-\d\s\:\+a-zA-Z\.]*/, '')
+      parsed_log = JSON.parse(log_content)["log"]
+      @logs_changed << parsed_log
+    end
+    render json: @logs_changed
+  end
+
   private
   def run_action(action)
     if @fluentd.agent.public_send(action)
